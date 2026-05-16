@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pojok Desain — Satu Pojok, Semua Bisa Didesain</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a9e6e;
+  --green-light: #e8f7f2;
+  --green-mid: #2dbe87;
+  --dark: #0a1510;
+  --dark2: #0f1c17;
+  --gray: #f4f7f5;
+  --text: #1e2d27;
+  --muted: #6b8c7d;
+  --white: #ffffff;
+  --border: #d4e8de;
+  --accent: #ff6b35;
+  --accent2: #ffd166;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,21,16,0.92);backdrop-filter:blur(12px);
+  padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(45,190,135,0.15);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;color:white;letter-spacing:-0.5px;}
+.nav-logo span{color:var(--green-mid);}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{font-size:12px;font-weight:600;color:#8fa89e;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--green-mid);}
+.nav-cta{
+  background:var(--green-mid);color:white;
+  font-size:12px;font-weight:700;
+  padding:8px 16px;border-radius:20px;
+  text-decoration:none;white-space:nowrap;
+  transition:transform .15s,background .2s;
+}
+.nav-cta:hover{background:var(--green);transform:scale(1.03);}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:100px 24px 60px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero-blob1{position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:var(--green-mid);opacity:0.08;filter:blur(40px);}
+.hero-blob2{position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;border-radius:50%;background:var(--accent);opacity:0.06;filter:blur(40px);}
+.hero-blob3{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;border-radius:50%;background:var(--green);opacity:0.04;filter:blur(60px);}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(45,190,135,0.15);border:1px solid rgba(45,190,135,0.3);
+  color:var(--green-mid);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,8vw,64px);
+  color:white;line-height:1.1;
+  margin-bottom:8px;
+  letter-spacing:-1px;
+}
+.hero h1 em{color:var(--green-mid);font-style:italic;}
+.hero-sub{
+  font-size:clamp(14px,3vw,18px);color:#8fa89e;
+  max-width:380px;margin:0 auto 32px;line-height:1.6;
+}
+.hero-tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
+.tool-pill{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  color:#c8ddd6;font-size:11px;font-weight:600;
+  padding:5px 12px;border-radius:20px;
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--green-mid);color:white;
+  font-size:14px;font-weight:700;font-family:inherit;
+  padding:14px 28px;border-radius:12px;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;
+  transition:transform .15s,background .2s;
+  box-shadow:0 4px 20px rgba(45,190,135,0.3);
+}
+.btn-primary:hover{background:var(--green);transform:translateY(-2px);}
+.btn-outline{
+  background:transparent;color:white;
+  font-size:14px;font-weight:600;font-family:inherit;
+  padding:14px 28px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:background .2s,border-color .2s;
+}
+.btn-outline:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.4);}
+.hero-stats{
+  display:flex;gap:32px;justify-content:center;flex-wrap:wrap;
+  margin-top:48px;padding-top:32px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.stat-item{text-align:center;}
+.stat-num{font-size:24px;font-weight:800;color:white;}
+.stat-label{font-size:11px;color:#6b8c7d;margin-top:2px;}
+
+/* SECTION COMMON */
+section{padding:60px 20px;}
+.section-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);margin-bottom:8px;
+}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,36px);color:var(--text);margin-bottom:12px;line-height:1.2;}
+.section-sub{font-size:14px;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.6;}
+.text-center{text-align:center;}
+
+/* LAYANAN */
+#layanan{background:var(--gray);}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;margin-top:36px;max-width:900px;margin-left:auto;margin-right:auto;
+}
+.service-card{
+  background:white;border-radius:20px;padding:20px;
+  border:1px solid var(--border);
+  transition:transform .2s,box-shadow .2s;
+  cursor:pointer;
+}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,158,110,0.1);}
+.service-card.hot{border-color:var(--accent);background:linear-gradient(135deg,#fff8f5,white);}
+.svc-icon{font-size:28px;margin-bottom:12px;}
+.svc-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.svc-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px;}
+.svc-price{font-size:13px;font-weight:700;color:var(--green);}
+.svc-badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:8px;margin-left:6px;
+  background:var(--accent);color:white;
+}
+
+/* DETAIL PRODUK */
+#produk{background:white;}
+.produk-nav{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  margin:24px 0;
+}
+.tab-btn{
+  background:var(--gray);color:var(--muted);
+  font-size:12px;font-weight:600;font-family:inherit;
+  padding:8px 16px;border-radius:20px;border:none;cursor:pointer;
+  transition:all .2s;
+}
+.tab-btn.active{background:var(--green);color:white;}
+.tab-content{display:none;max-width:700px;margin:0 auto;}
+.tab-content.active{display:block;}
+.detail-card{
+  background:var(--gray);border-radius:16px;padding:18px;
+  margin-bottom:12px;border:1px solid var(--border);
+}
+.detail-card-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.detail-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.detail-title{font-size:14px;font-weight:700;color:var(--text);}
+.detail-sub{font-size:12px;color:var(--muted);}
+.detail-desc{font-size:13px;color:#4a6b5d;line-height:1.6;margin-bottom:10px;}
+.tier-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px dashed var(--border);font-size:13px;}
+.tier-row:last-child{border:none;}
+.tier-name{color:var(--text);font-weight:500;}
+.tier-price{color:var(--green);font-weight:700;}
+.includes{margin-top:10px;}
+.inc-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.inc-list{list-style:none;display:flex;flex-direction:column;gap:3px;}
+.inc-list li{font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.inc-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+.note-box{background:var(--green-light);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--green);margin-top:10px;font-weight:500;}
+.featured-detail{background:var(--dark2);border-color:var(--green-mid);}
+.featured-detail .detail-title{color:white;}
+.featured-detail .detail-sub{color:#8fa89e;}
+.featured-detail .detail-desc{color:#a8c4b8;}
+.featured-detail .inc-title{color:#6b9e8a;}
+.featured-detail .inc-list li{color:#d4ede4;}
+.featured-detail .inc-list li::before{color:var(--green-mid);}
+.featured-detail .tier-row{border-color:rgba(255,255,255,0.1);}
+.featured-detail .tier-name{color:#c8ddd6;}
+.featured-detail .tier-price{color:var(--green-mid);}
+.featured-detail .note-box{background:rgba(45,190,135,0.15);color:var(--green-mid);}
+.hot-badge{background:var(--accent);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:8px;}
+
+/* KENAPA KAMI */
+#kenapa{background:var(--dark);}
+#kenapa .section-title{color:white;}
+#kenapa .section-sub{color:#6b8c7d;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:36px;max-width:800px;margin-left:auto;margin-right:auto;}
+.why-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;text-align:center;}
+.why-icon{font-size:28px;margin-bottom:10px;}
+.why-title{font-size:14px;font-weight:700;color:white;margin-bottom:4px;}
+.why-desc{font-size:12px;color:#6b8c7d;line-height:1.5;}
+
+/* TESTIMONIAL */
+#testimoni{background:var(--gray);}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:32px;max-width:800px;margin-left:auto;margin-right:auto;}
+.testi-card{background:white;border-radius:16px;padding:18px;border:1px solid var(--border);}
+.testi-stars{color:var(--accent2);font-size:14px;margin-bottom:8px;}
+.testi-text{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{width:32px;height:32px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.testi-name{font-size:13px;font-weight:700;color:var(--text);}
+.testi-loc{font-size:11px;color:var(--muted);}
+
+/* CTA SECTION */
+#order{
+  background:linear-gradient(135deg,var(--dark) 0%,#0d2a1e 100%);
+  text-align:center;padding:60px 20px;
+  position:relative;overflow:hidden;
+}
+#order::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:var(--green);opacity:0.06;filter:blur(60px);}
+#order .section-title{color:white;margin-bottom:8px;}
+#order .section-sub{color:#6b8c7d;margin-bottom:32px;}
+.order-methods{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+.method-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  color:#c8ddd6;font-size:12px;font-weight:600;
+  padding:8px 16px;border-radius:20px;
+}
+.wa-big{
+  background:#25D366;color:white;
+  font-size:16px;font-weight:700;font-family:inherit;
+  padding:16px 40px;border-radius:14px;border:none;cursor:pointer;
+  display:inline-block;text-decoration:none;
+  transition:transform .15s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(37,211,102,0.3);
+}
+.wa-big:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,211,102,0.4);}
+.wa-num{font-size:13px;color:#6b8c7d;margin-top:12px;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:24px 20px;text-align:center;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;margin-bottom:4px;}
+.footer-logo span{color:var(--green-mid);}
+.footer-tagline{font-size:12px;color:#4a6b5d;margin-bottom:16px;}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+.footer-links a{font-size:12px;color:#4a6b5d;text-decoration:none;}
+.footer-copy{font-size:11px;color:#2a3d32;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* MOBILE NAV */
+@media(max-width:480px){
+  .nav-links{display:none;}
+  .hero h1{font-size:36px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Pojok<span>Desain</span></div>
+  <div class="nav-links">
+    <a href="#layanan">Layanan</a>
+    <a href="#produk">Produk</a>
+    <a href="#testimoni">Testimoni</a>
+  </div>
+  <a href="https://wa.me/6285129225794" target="_blank" class="nav-cta">💬 Order Sekarang</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-blob3"></div>
+  <div class="hero-eyebrow">✦ Jasa Desain Grafis Balikpapan</div>
+  <h1>Satu Pojok,<br><em>Semua Bisa</em><br>Didesain</h1>
+  <p class="hero-sub">Spanduk, branding kendaraan, undangan, kartu nama, konten sosmed — semuanya ada di sini. Siap cetak, harga terjangkau.</p>
+  <div class="hero-tools">
+    <span class="tool-pill">CorelDRAW</span>
+    <span class="tool-pill">Illustrator</span>
+    <span class="tool-pill">Photoshop</span>
+    <span class="tool-pill">CapCut</span>
+  </div>
+  <div class="hero-btns">
+    <a href="https://wa.me/6285129225794" target="_blank" class="btn-primary">📩 Order via WhatsApp</a>
+    <a href="#layanan" class="btn-outline">Lihat Layanan ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Software Desain</div></div>
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Jenis Layanan</div></div>
+    <div class="stat-item"><div class="stat-num">3x</div><div class="stat-label">Revisi Gratis</div></div>
+    <div class="stat-item"><div class="stat-num">1-3</div><div class="stat-label">Hari Selesai</div></div>
+  </div>
+</section>
+
+<!-- LAYANAN RINGKAS -->
+<section id="layanan">
+  <div class="text-center reveal">
+    <div class="section-eyebrow">✦ Apa yang bisa kami bantu</div>
+    <h2 class="section-title">Semua Kebutuhan Desainmu</h2>
+    <p class="section-sub">Dari desain cetak sampai digital, semua bisa diorder di Pojok Desain.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card hot reveal">
+      <div class="svc-icon">🚗</div>
+      <div class="svc-title">Branding Kendaraan <span class="svc-badge">POPULER</span></div>
+      <div class="svc-desc">Cutting stiker & wrapping kendaraan siap bawa ke tukang stiker.</div>
+      <div class="svc-price">Mulai Rp 150.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">🖼</div>
+      <div class="svc-title">Spanduk & Banner</div>
+      <div class="svc-desc">Desain spanduk promosi, acara, atau toko. Siap cetak resolusi tinggi.</div>
+      <div class="svc-price">Mulai Rp 75.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">💍</div>
+      <div class="svc-title">Undangan</div>
+      <div class="svc-desc">Pernikahan, ulang tahun, acara korporat. Digital & cetak tersedia.</div>
+      <div class="svc-price">Mulai Rp 50.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">📇</div>
+      <div class="svc-title">Kartu Nama</div>
+      <div class="svc-desc">Desain profesional 1 atau 2 sisi. Siap cetak di percetakan mana aja.</div>
+      <div class="svc-price">Mulai Rp 50.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">🏷</div>
+      <div class="svc-title">Stiker & Label</div>
+      <div class="svc-desc">Label kemasan produk UMKM, stiker promosi, dan stiker brand.</div>
+      <div class="svc-price">Mulai Rp 50.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">🧾</div>
+      <div class="svc-title">Nota & Invoice</div>
+      <div class="svc-desc">Nota toko dengan logo custom. Keliatan lebih profesional!</div>
+      <div class="svc-price">Mulai Rp 50.000</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">📲</div>
+      <div class="svc-title">Konten Sosmed</div>
+      <div class="svc-desc">Feed, story, flyer digital untuk Instagram, TikTok, Facebook.</div>
+      <div class="svc-price">Mulai Rp 50.000</div>
+    </div>
+    <div class="service-card hot reveal">
+      <div class="svc-icon">🚀</div>
+      <div class="svc-title">Paket UMKM <span class="svc-badge">HEMAT</span></div>
+      <div class="svc-desc">Logo + kartu nama + nota + 3 konten sosmed. Paket lengkap!</div>
+      <div class="svc-price">Rp 200.000 <s style="color:var(--muted);font-weight:400;font-size:11px">Rp 275.000</s></div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL PRODUK -->
+<section id="produk">
+  <div class="text-center reveal">
+    <div class="section-eyebrow">✦ Detail lengkap</div>
+    <h2 class="section-title">Yang Kamu Dapat</h2>
+    <p class="section-sub">Klik kategori untuk lihat detail setiap produk.</p>
+  </div>
+  <div class="produk-nav">
+    <button class="tab-btn active" onclick="showTab('cetak')">🖨 Desain Cetak</button>
+    <button class="tab-btn" onclick="showTab('undangan')">💌 Undangan</button>
+    <button class="tab-btn" onclick="showTab('digital')">📱 Digital</button>
+    <button class="tab-btn" onclick="showTab('paket')">🎁 Paket Spesial</button>
+  </div>
+
+  <!-- CETAK -->
+  <div class="tab-content active" id="tab-cetak">
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#e8f7f2">🖼</div><div><div class="detail-title">Spanduk / Banner</div><div class="detail-sub">Promosi, acara, toko</div></div></div>
+      <div class="detail-desc">Desain spanduk siap cetak dengan layout profesional. Tinggal kasih teks, foto produk, dan warna yang diinginkan!</div>
+      <div class="tier-row"><span class="tier-name">Desain only</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="tier-row"><span class="tier-name">Revisi ke-4 dan seterusnya</span><span class="tier-price">Rp 15.000/revisi</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>File 300 DPI siap kirim ke percetakan</li><li>Format CDR + PDF + PNG</li><li>Revisi 3x gratis</li><li>Ukuran bebas sesuai kebutuhan</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#fff3ee">🚗</div><div><div class="detail-title">Branding Kendaraan</div><div class="detail-sub">Motor, mobil, pick-up, truk</div></div></div>
+      <div class="detail-desc">Desain cutting stiker atau wrapping kendaraan. Hasil desain langsung bisa dibawa ke tukang stiker/cutting.</div>
+      <div class="tier-row"><span class="tier-name">Konsep desain (1 sisi)</span><span class="tier-price">Rp 150.000</span></div>
+      <div class="tier-row"><span class="tier-name">Full set (depan+samping+belakang)</span><span class="tier-price">Rp 300.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>File AI/CDR siap cutting atau print</li><li>Mockup preview tampilan di kendaraan</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#fff8e1">🏷</div><div><div class="detail-title">Stiker & Label Produk</div><div class="detail-sub">Label kemasan, stiker promosi</div></div></div>
+      <div class="detail-desc">Label untuk kemasan produk UMKM, stiker promosi, atau stiker brand. Hasilnya profesional, makin meyakinkan!</div>
+      <div class="tier-row"><span class="tier-name">1 desain stiker/label</span><span class="tier-price">Rp 50.000</span></div>
+      <div class="tier-row"><span class="tier-name">Paket 3 desain</span><span class="tier-price">Rp 120.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Format PNG transparan + PDF siap cetak</li><li>Ukuran sesuai permintaan</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#f0eeff">📇</div><div><div class="detail-title">Kartu Nama</div><div class="detail-sub">Personal, bisnis, UMKM</div></div></div>
+      <div class="detail-desc">Kartu nama desain kece dan profesional. Langsung siap cetak di percetakan mana aja!</div>
+      <div class="tier-row"><span class="tier-name">1 sisi (depan saja)</span><span class="tier-price">Rp 50.000</span></div>
+      <div class="tier-row"><span class="tier-name">2 sisi (depan + belakang)</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Ukuran standar 9×5.5 cm atau custom</li><li>Format CDR + PDF + PNG resolusi tinggi</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#e8f7f2">🧾</div><div><div class="detail-title">Nota / Invoice Jualan</div><div class="detail-sub">Nota toko, kwitansi, invoice</div></div></div>
+      <div class="detail-desc">Nota atau invoice dengan desain rapi dan berlogo. Bikin usahamu keliatan lebih profesional!</div>
+      <div class="tier-row"><span class="tier-name">Desain nota (tanpa logo)</span><span class="tier-price">Rp 50.000</span></div>
+      <div class="tier-row"><span class="tier-name">Desain nota + logo custom</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Format PDF + CDR siap cetak</li><li>Ukuran A5 atau custom</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+  </div>
+
+  <!-- UNDANGAN -->
+  <div class="tab-content" id="tab-undangan">
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#fff0f5">💍</div><div><div class="detail-title">Undangan Pernikahan</div><div class="detail-sub">Digital WA & cetak</div></div></div>
+      <div class="detail-desc">Desain undangan nikah yang elegan dan berkesan. Disesuaikan dengan tema dan konsep nikahan kamu!</div>
+      <div class="tier-row"><span class="tier-name">Digital (WA/sosmed)</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="tier-row"><span class="tier-name">Cetak (siap print)</span><span class="tier-price">Rp 100.000</span></div>
+      <div class="tier-row"><span class="tier-name">Paket digital + cetak</span><span class="tier-price">Rp 150.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Desain custom sesuai tema (modern, islami, tradisional, dll)</li><li>Foto pengantin bisa dimasukkan</li><li>Format JPG/PNG untuk digital, PDF untuk cetak</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#fff8e1">🎂</div><div><div class="detail-title">Undangan Ulang Tahun</div><div class="detail-sub">Anak-anak, dewasa, semua tema</div></div></div>
+      <div class="detail-desc">Undangan ultah yang lucu dan meriah! Tema superhero, princess, kartun, atau elegan untuk dewasa.</div>
+      <div class="tier-row"><span class="tier-name">Digital (WA/sosmed)</span><span class="tier-price">Rp 50.000</span></div>
+      <div class="tier-row"><span class="tier-name">Cetak (siap print)</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Desain custom sesuai tema pilihan</li><li>Foto bisa dimasukkan</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#e8f0ff">🏢</div><div><div class="detail-title">Undangan Acara / Korporat</div><div class="detail-sub">Seminar, gathering, syukuran</div></div></div>
+      <div class="detail-desc">Undangan resmi untuk acara perusahaan atau komunitas. Tampilan formal dan profesional.</div>
+      <div class="tier-row"><span class="tier-name">Per desain undangan</span><span class="tier-price">Rp 100.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Logo perusahaan/organisasi bisa dimasukkan</li><li>Format digital & cetak tersedia</li><li>Revisi 3x gratis</li></ul></div>
+    </div>
+  </div>
+
+  <!-- DIGITAL -->
+  <div class="tab-content" id="tab-digital">
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#e8f7f2">📲</div><div><div class="detail-title">Desain Konten Sosmed</div><div class="detail-sub">Instagram, Facebook, TikTok</div></div></div>
+      <div class="detail-desc">Konten feed, story, atau flyer digital untuk promosi usaha. Desain menarik = pelanggan makin percaya!</div>
+      <div class="tier-row"><span class="tier-name">1 desain (post/story/flyer)</span><span class="tier-price">Rp 50.000</span></div>
+      <div class="tier-row"><span class="tier-name">Paket 5 desain</span><span class="tier-price">Rp 200.000</span></div>
+      <div class="tier-row"><span class="tier-name">Paket 10 desain</span><span class="tier-price">Rp 350.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Ukuran optimal tiap platform (1:1, 9:16, dll)</li><li>File JPG/PNG resolusi tinggi</li><li>Revisi 3x gratis per desain</li></ul></div>
+      <div class="note-box">💡 Paket 10 desain hemat Rp 150.000 dibanding beli satuan!</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-header"><div class="detail-icon" style="background:#fff0f5">🎬</div><div><div class="detail-title">Edit Video Ringan</div><div class="detail-sub">Reels, TikTok, promosi produk</div></div></div>
+      <div class="detail-desc">Edit video pendek untuk konten promosi. Termasuk potong video, teks/caption, musik, dan transisi.</div>
+      <div class="tier-row"><span class="tier-name">Video pendek (maks 60 detik)</span><span class="tier-price">Rp 75.000</span></div>
+      <div class="tier-row"><span class="tier-name">Video 1–3 menit</span><span class="tier-price">Rp 125.000</span></div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Potongan video, teks, caption, transisi</li><li>Musik background bebas royalti</li><li>Format MP4 siap upload</li></ul></div>
+      <div class="note-box">⚠️ Edit video basic — tanpa efek 3D/motion graphics kompleks</div>
+    </div>
+  </div>
+
+  <!-- PAKET -->
+  <div class="tab-content" id="tab-paket">
+    <div class="detail-card featured-detail">
+      <div style="display:inline-block;background:var(--accent);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px;margin-bottom:12px;">🔥 TERLARIS</div>
+      <div class="detail-card-header"><div class="detail-icon" style="background:rgba(45,190,135,0.2)">🚀</div><div><div class="detail-title">Paket Branding UMKM</div><div class="detail-sub">Paket lengkap biar usaha makin kece</div></div></div>
+      <div class="detail-desc">Solusi branding lengkap untuk usaha baru atau yang mau rebranding. Satu paket, satu harga, langsung siap jalan!</div>
+      <div class="includes"><div class="inc-title">Yang kamu dapat:</div><ul class="inc-list"><li>Logo usaha (CDR + AI + PNG transparan)</li><li>Desain kartu nama 2 sisi</li><li>Desain nota/invoice jualan</li><li>3 desain konten sosial media</li></ul></div>
+      <div class="tier-row" style="margin-top:12px"><span class="tier-name" style="text-decoration:line-through;color:#4a6b5d">Harga normal</span><span style="text-decoration:line-through;color:#4a6b5d;font-size:13px">Rp 275.000</span></div>
+      <div class="tier-row"><span class="tier-name" style="color:white;font-weight:700">Harga paket</span><span class="tier-price" style="font-size:20px">Rp 200.000</span></div>
+      <div class="note-box">💰 Hemat Rp 75.000 dibanding beli satuan-satuan!</div>
+    </div>
+  </div>
+</section>
+
+<!-- KENAPA KAMI -->
+<section id="kenapa">
+  <div class="text-center reveal">
+    <div class="section-eyebrow" style="color:var(--green-mid)">✦ Jaminan kami</div>
+    <h2 class="section-title">Kenapa Pilih Pojok Desain?</h2>
+    <p class="section-sub">Bukan cuma desain — kami kasih pengalaman order yang nyaman dari awal sampai file di tangan kamu.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon">✅</div><div class="why-title">Revisi 3x Gratis</div><div class="why-desc">Gak puas? Langsung bilang, kami perbaiki tanpa biaya tambahan.</div></div>
+    <div class="why-card reveal"><div class="why-icon">⚡</div><div class="why-title">Pengerjaan Cepat</div><div class="why-desc">Selesai dalam 1–3 hari kerja. Ada yang urgent? Bisa diskusi!</div></div>
+    <div class="why-card reveal"><div class="why-icon">📁</div><div class="why-title">File Siap Cetak</div><div class="why-desc">Semua file dikirim dalam format resolusi tinggi, langsung bisa ke percetakan.</div></div>
+    <div class="why-card reveal"><div class="why-icon">💬</div><div class="why-title">Komunikasi Mudah</div><div class="why-desc">Order, diskusi, dan revisi semua via WhatsApp. Gampang dan cepat!</div></div>
+    <div class="why-card reveal"><div class="why-icon">🛡</div><div class="why-title">Desain 100% Custom</div><div class="why-desc">Bukan template jadi — semua dibuat dari nol sesuai kebutuhan kamu.</div></div>
+    <div class="why-card reveal"><div class="why-icon">📦</div><div class="why-title">Kirim ke Mana Aja</div><div class="why-desc">File dikirim via WhatsApp atau Google Drive ke seluruh Indonesia.</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni">
+  <div class="text-center reveal">
+    <div class="section-eyebrow">✦ Kata mereka</div>
+    <h2 class="section-title">Yang Udah Order</h2>
+    <p class="section-sub">Kepuasan customer adalah prioritas utama Pojok Desain.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Desain spanduk warung saya jadi kece banget! Dikerjain cepet, file langsung siap cetak. Recommended!"</div>
+      <div class="testi-author"><div class="testi-avatar">🧑</div><div><div class="testi-name">Pak Rudi</div><div class="testi-loc">Pemilik Warung Makan, Balikpapan</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Undangan nikahan saya desainnya cantik banget, sesuai tema yang diminta. Revisi juga cepet diresponnya!"</div>
+      <div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Sari</div><div class="testi-loc">Balikpapan</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Paket UMKM-nya worth it banget! Logo, kartu nama, nota — semua jadi dalam 2 hari. Harga terjangkau!"</div>
+      <div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">Budi Santoso</div><div class="testi-loc">Owner UMKM, Balikpapan</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA ORDER -->
+<section id="order">
+  <div class="section-eyebrow" style="color:var(--green-mid);text-align:center">✦ Yuk mulai</div>
+  <h2 class="section-title">Siap Order Sekarang?</h2>
+  <p class="section-sub">Langsung chat via WhatsApp — ceritain kebutuhan desainmu, kami siap bantu!</p>
+  <div class="order-methods">
+    <div class="method-badge">📱 Via WhatsApp</div>
+    <div class="method-badge">📁 File via Drive</div>
+    <div class="method-badge">🏦 Transfer Bank</div>
+  </div>
+  <a href="https://wa.me/6285129225794?text=Halo%20Pojok%20Desain%2C%20saya%20mau%20order%20desain!" target="_blank" class="wa-big">💬 Chat WhatsApp Sekarang</a>
+  <div class="wa-num">0851-2922-5794 · Balikpapan · Aktif setiap hari</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pojok<span>Desain</span></div>
+  <div class="footer-tagline">Satu Pojok, Semua Bisa Didesain</div>
+  <div class="footer-links">
+    <a href="#layanan">Layanan</a>
+    <a href="#produk">Produk</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="https://wa.me/6285129225794" target="_blank">WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2025 Pojok Desain · Balikpapan</div>
+</footer>
+
+<script>
+// Tab switching
+function showTab(id){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
